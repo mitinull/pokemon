@@ -41,7 +41,6 @@ end
 
 function LevelUpMenuState:update(dt)
     if love.keyboard.wasPressed('space') or love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
-        gStateStack:pop()
         self.callback()
     end
 end

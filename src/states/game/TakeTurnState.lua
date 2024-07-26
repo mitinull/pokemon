@@ -214,8 +214,23 @@ function TakeTurnState:victory()
                                             self.playerPokemon.defense,
                                             self.playerPokemon.speed,
                                             function()
-                                                gStateStack:pop()
-                                                self:fadeOutWhite()
+                                                -- fade in
+                                                gStateStack:push(FadeInState({
+                                                        r = 1, g = 1, b = 1
+                                                    }, 1,
+                                                    function()
+                                                        -- resume field music
+                                                        gSounds['victory-music']:stop()
+                                                        gSounds['field-music']:play()
+
+                                                        -- pop off the menu + message + battle state
+                                                        gStateStack:pop()
+                                                        gStateStack:pop()
+                                                        gStateStack:pop()
+                                                        gStateStack:push(FadeOutState({
+                                                            r = 1, g = 1, b = 1
+                                                        }, 1, function() end))
+                                                    end))
                                             end))
                                     end)
                                 else
