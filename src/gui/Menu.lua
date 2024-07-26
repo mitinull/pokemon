@@ -15,13 +15,19 @@ Menu = Class {}
 function Menu:init(def)
     self.panel = Panel(def.x, def.y, def.width, def.height)
 
+    self.hasCursor = def.hasCursor
+
+    if self.hasCursor == nil then
+        self.hasCursor = true
+    end
+
     self.selection = Selection {
         items = def.items,
         x = def.x,
         y = def.y,
         width = def.width,
         height = def.height,
-        hasCursor = false
+        hasCursor = self.hasCursor
     }
 end
 

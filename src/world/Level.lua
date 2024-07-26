@@ -6,7 +6,7 @@
     cogden@cs50.harvard.edu
 ]]
 
-Level = Class{}
+Level = Class {}
 
 function Level:init()
     self.tileWidth = 50
@@ -34,7 +34,6 @@ function Level:init()
 end
 
 function Level:createMaps()
-
     -- fill the base tiles table with random grass IDs
     for y = 1, self.tileHeight do
         table.insert(self.baseLayer.tiles, {})
@@ -67,4 +66,10 @@ function Level:render()
     self.baseLayer:render()
     self.grassLayer:render()
     self.player:render()
+    love.graphics.setColor(.1, .1, .2, 1)
+    love.graphics.setFont(gFonts['small'])
+    love.graphics.print("HP: " .. self.player.party.pokemon[1].HP ..
+        "\nAttack: " .. self.player.party.pokemon[1].attack ..
+        "\nDefense: " .. self.player.party.pokemon[1].defense ..
+        "\nSpeed: " .. self.player.party.pokemon[1].speed, 10, 10)
 end
